@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>LIFFDocs</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "coal" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="preliminary.html">Preliminary</a></li><li class="chapter-item expanded "><a href="fileformat.html"><strong aria-hidden="true">1.</strong> File Format</a></li><li class="chapter-item expanded "><a href="header.html"><strong aria-hidden="true">2.</strong> Header</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded affix "><li class="part-title">Commands</li><li class="chapter-item expanded "><a href="commands/truthtable.html"><strong aria-hidden="true">4.</strong> TruthTable</a></li><li class="chapter-item expanded "><a href="commands/graph.html"><strong aria-hidden="true">5.</strong> Graph</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="commands/graph/version.html"><strong aria-hidden="true">5.1.</strong> Version</a></li><li class="chapter-item expanded "><a href="commands/graph/depend.html"><strong aria-hidden="true">5.2.</strong> Depend</a></li><li class="chapter-item expanded "><a href="commands/graph/node.html"><strong aria-hidden="true">5.3.</strong> Node</a></li><li class="chapter-item expanded "><a href="commands/graph/connections.html"><strong aria-hidden="true">5.4.</strong> Connections</a></li></ol></li><li class="chapter-item expanded "><a href="commands/script.html"><strong aria-hidden="true">6.</strong> Script</a></li><li class="chapter-item expanded "><a href="commands/graphrender.html"><strong aria-hidden="true">7.</strong> GraphRender</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="commands/graphrender/position.html"><strong aria-hidden="true">7.1.</strong> Position</a></li><li class="chapter-item expanded "><a href="commands/graphrender/wire.html"><strong aria-hidden="true">7.2.</strong> Wire</a></li></ol></li><li class="chapter-item expanded "><a href="commands/custom.html"><strong aria-hidden="true">8.</strong> Custom</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">LIFFDocs</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/MarcasRealAccount/LIFFDocs" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="preliminary"><a class="header" href="#preliminary">Preliminary</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="file-format"><a class="header" href="#file-format">File Format</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="header"><a class="header" href="#header">Header</a></h1>
+<p>The header is the only fully required part of a LIFF file.</p>
+<pre><code>[NamespaceID]
+[InputNames]
+[OutputNames]
+</code></pre>
+<h3 id="namespaceid"><a class="header" href="#namespaceid"><strong>NamespaceID</strong></a></h3>
+<p>An identifier of the form <code>Namespace:Name</code> where <code>Namespace</code> and <code>Name</code> are text.
+The allowed characters in the sequences are as follows:</p>
+<ul>
+<li><code>0123456789</code> numbers</li>
+<li><code>abcdefghijklmnopqrstuvxyz</code> lowercase letters</li>
+<li><code>_</code></li>
+<li><code>-</code></li>
+<li><code>.</code></li>
+</ul>
+<h3 id="inputnames--outputnames"><a class="header" href="#inputnames--outputnames"><strong>InputNames</strong> &amp; <strong>OutputNames</strong></a></h3>
+<p>A semicolon separated list of input and output names, these define how many inputs and outputs a component has.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="body"><a class="header" href="#body">Body</a></h1>
+<p>The body is comprised of a <code>\r\n</code>/<code>\n</code> newline separated list of commands.<br />
+The optimal layout of a body is</p>
+<pre><code>TruthTable
+
+Graph
+// Graph commands
+
+GraphRender
+// Graph render commands
+
+Script
+
+Custom
+// Custom commands
+</code></pre>
+<p>As the above layout makes it quickly readable of what the component supports, whether it is a TruthTable only component or if it has a Graph associated with it for simulating the internals, or if it is a script component.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="truthtable"><a class="header" href="#truthtable">TruthTable</a></h1>
+<p>The <strong><code>TruthTable</code></strong> command expresses a truth table for the component.<br />
+This command is only legal for components with \(\le 16\) inputs, as more would require substantually larger truth tables. (<em>Subject to be increased later</em>)<br />
+The following sequence of bits <code>0</code>s and <code>1</code>s as ascii characters represents the outputs, the command should continue reading new lines until it either has read all the bits it needs (<code>(1 &lt;&lt; input_count) * output_count</code>) or reaches another command, at which point it should error and explain to the user the truth table is written improperly, and telling them how many bits was found out of how many should be there.<br />
+The bits can be indexed like <code>inputs * output_count</code> which specifies the bit index, where <code>inputs</code> is an integer with the input bits set correctly.<br />
+So for a component with 3 inputs and 5 outputs the total bit count would be <code>(1 &lt;&lt; 3) * 5 =&gt; 40</code> and could look like:</p>
+<pre><code>TruthTable
+00000 // 000
+01010 // 001
+01001 // 010
+11010 // 011
+10110 // 100
+11110 // 101
+11101 // 110
+11111 // 111
+</code></pre>
+<p>Or all on one line:</p>
+<pre><code>TruthTable 0000001010010011101010110111101110111111
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="graph"><a class="header" href="#graph">Graph</a></h1>
+<p>The <strong><code>Graph</code></strong> command group expresses a graph for a component.<br />
+A graph is like a collection of nodes comprised of components, and a collection of connections between nodes.<br />
+This makes for a rather optimized and interchangeable format for simulating a component.</p>
+<p>The sub commands you can use within a <strong><code>Graph</code></strong> is:</p>
+<ul>
+<li><a href="commands/./graph/version.html">Version</a></li>
+<li><a href="commands/./graph/depend.html">Depend</a></li>
+<li><a href="commands/./graph/node.html">Node</a></li>
+<li><a href="commands/./graph/connections.html">Connections</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="version"><a class="header" href="#version">Version</a></h1>
+<p>The <strong><code>Version</code></strong> command specifies what minimum version of LIFF the component was written for.<br />
+This ensures the component doesn't crash older programs in the case of using a future builtin component.<br />
+The program should tell the user the component is incompatible with the current version.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Version [VersionRequirement]
+</code></pre>
+<h3 id="versionrequirement"><a class="header" href="#versionrequirement"><strong>VersionRequirement</strong></a></h3>
+<p>A version number in one of the formats: <code>major</code>, <code>major.minor</code>, where <code>major</code> and <code>minor</code> are integers.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="depend"><a class="header" href="#depend">Depend</a></h1>
+<p>The <strong><code>Depend</code></strong> command specifies what other components must exist before using this one.<br />
+This ensures the component doesn't crash programs where it requires a missing component.<br />
+The program should tell the user the component is missing the components.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Depend [NamespaceID(;InputCount) ...]
+</code></pre>
+<p>Space separated list of component ids comprised of the namespace id and an optional input count preceeded by <code>;</code>.</p>
+<h3 id="inputcount"><a class="header" href="#inputcount"><strong>(;InputCount)</strong></a></h3>
+<p>An optional input count, useful for having components with multiple input counts.<br />
+If this field is omitted the program should try to figure out which component overload to use, based on the used ports. (<em>The program may skip over this, and instead scream at the user about this feature not being implemented under the message &quot;NO_OVERLOAD_RESOLUTION&quot;</em>)</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="node"><a class="header" href="#node">Node</a></h1>
+<p>The <strong><code>Node</code></strong> command adds a node to the graph under a specific name.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Node [NamespaceID(;InputCount)] [Name]
+</code></pre>
+<h3 id="inputcount-1"><a class="header" href="#inputcount-1"><strong>(;InputCount)</strong></a></h3>
+<p>An optional input count, useful for having components with multiple input counts.<br />
+If this field is omitted the program should try to figure out which component overload to use, based on the used ports. (<em>The program may skip over this, and instead scream at the user about this feature not being implemented under the message &quot;NO_OVERLOAD_RESOLUTION&quot;</em>)</p>
+<h3 id="name"><a class="header" href="#name"><strong>Name</strong></a></h3>
+<p>A text field for a name, should follow normal C/C++ identifiers. In other words should only allow alphabetic or underscore followed by alphanumerics or underscores.<br />
+The reason behind this is so that numbers and identifiers don't get mixed.<br />
+In terms of Regex <code>[A-Za-z_][A-Za-z0-9_]*</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="connections"><a class="header" href="#connections">Connections</a></h1>
+<p>The <strong><code>Connections</code></strong> command adds connections to a graph.<br />
+Used to connect two or more nodes together.<br />
+Each call to this command makes a new <strong>ConnectionID</strong> for it, by incrementing each time. So having 2, the first one has the ID of 0, the second one has the ID of 1.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Connections [[Name](:PortName) ...]
+</code></pre>
+<p>Space separated list of node names with an optional port name or number preceeded by <code>:</code>.</p>
+<h3 id="name-1"><a class="header" href="#name-1"><strong>Name</strong></a></h3>
+<p>A text field for a name, should follow normal C/C++ identifiers. In other words should only allow alphabetic or underscore followed by alphanumerics or underscores.<br />
+The reason behind this is so that numbers and identifiers don't get mixed.<br />
+In terms of Regex <code>[A-Za-z_][A-Za-z0-9_]*</code>.</p>
+<h3 id="portname"><a class="header" href="#portname"><strong>(:PortName)</strong></a></h3>
+<p>An optional port name, specifies what port to connect.<br />
+This can be either the name given in the header of the component or a number.<br />
+The number represents an input if it is \(\le\) inputCount, otherwise it represents an output.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="script"><a class="header" href="#script">Script</a></h1>
+<p>The <strong><code>Script</code></strong> command expresses a script for a component.<br />
+This command is incompatible with <strong><code>TruthTable</code></strong>, <strong><code>Graph</code></strong> and <strong><code>GraphRender</code></strong>.<br />
+(<em>This command is optionally supported by the program, if a component uses this command the program should then scream at the user under this message &quot;NO_SCRIPTING&quot;</em>)</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Script [ScriptPath]
+</code></pre>
+<h3 id="scriptpath"><a class="header" href="#scriptpath"><strong>ScriptPath</strong></a></h3>
+<p>A unix filepath to a script file.<br />
+<strong>The functionality will be described in the future.</strong></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="graphrender"><a class="header" href="#graphrender">GraphRender</a></h1>
+<p>The <strong><code>GraphRender</code></strong> command group expresses the rendering of a graph for a component.<br />
+This command requires a previous <strong><code>Graph</code></strong> command group.<br />
+This command and its sub commands can be skipped if the program only simulates without visuals, the program shall quietly skip them as if they never existed.<br />
+This command doesn't help implement editability for a program, covered <a href="commands/./custom.html">here</a>.</p>
+<p>The sub commands you can use within a <strong><code>GraphRender</code></strong> is:</p>
+<ul>
+<li><a href="commands/./graphrender/position.html">Position</a></li>
+<li><a href="commands/./graphrender/wire.html">Wire</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="position"><a class="header" href="#position">Position</a></h1>
+<p>The <strong><code>Position</code></strong> command sets the position of a node.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Position [Name] [GridX] [GridY]
+</code></pre>
+<h3 id="name-2"><a class="header" href="#name-2"><strong>Name</strong></a></h3>
+<p>A text field for a name, should follow normal C/C++ identifiers. In other words should only allow alphabetic or underscore followed by alphanumerics or underscores.<br />
+The reason behind this is so that numbers and identifiers don't get mixed.<br />
+In terms of Regex <code>[A-Za-z_][A-Za-z0-9_]*</code>.</p>
+<h3 id="gridx--gridy"><a class="header" href="#gridx--gridy"><strong>GridX</strong> &amp; <strong>GridY</strong></a></h3>
+<p>Integer coordinates for the top left corner of the node.<br />
+Optionally a program may support a <code>Grid:Offset</code> coordinate system for finer positioning within a grid cell, the offset should be from 0 to 1 can be represented however the program wishes, as a fractional integer I.e. a format like 1.15 or 1.31 where there's 1 bit for the whole number and 15 or 31 bits for the fractional part.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wire"><a class="header" href="#wire">Wire</a></h1>
+<p>The <strong><code>Wire</code></strong> command makes a wire from A to B, connected to a specific connections.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Wire [ConnectionID] [StartX] [StartY] [EndX] [EndY]
+</code></pre>
+<h3 id="connectionid"><a class="header" href="#connectionid"><strong>ConnectionID</strong></a></h3>
+<p>The ID given from a previous <strong><code>Connections</code></strong> command.</p>
+<h3 id="startx--starty--endx--endy"><a class="header" href="#startx--starty--endx--endy"><strong>StartX</strong> &amp; <strong>StartY</strong> &amp; <strong>EndX</strong> &amp; <strong>EndY</strong></a></h3>
+<p>Integer coordinates for the start and end points of a wire.<br />
+Optionally a program may support a <code>Grid:Offset</code> coordinate system for finer positioning within a grid cell, the offset should be from 0 to 1 can be represented however the program wishes, as a fractional integer I.e. a format like 1.15 or 1.31 where there's 1 bit for the whole number and 15 or 31 bits for the fractional part.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom"><a class="header" href="#custom">Custom</a></h1>
+<p>The <strong><code>Custom</code></strong> command group allows a program to implement their own sub commands.<br />
+The purpose of this command group is to allow a program to implement editability in an optimal way for themselves, yes it means there might be competing methods for this, but since the command group takes in a unique identifier they can just use a shared identifier for said editability commands.<br />
+A program should not execute the custom group if they don't support the unique identifier or the implemented version is below the required minimum version.<br />
+This command group can appear multiple times within a component, which is useful to make programs mroe interchangeable, in the case of supporting multiple programs through adding more <strong><code>Custom</code></strong> command groups for them if needed.<br />
+A program that wishes to edit a component through reading and writing a new one should retain all <strong><code>Custom</code></strong> command groups it doesn't recognize.<br />
+For example if Component A was written for Program A with the unique identifier &quot;<strong>A</strong>&quot;, then when imported into Program B the Custom group should be skipped quietly.</p>
+<p>The syntax for the command is as follows</p>
+<pre><code>Custom [Name] [Version]
+</code></pre>
+<h3 id="name-3"><a class="header" href="#name-3"><strong>Name</strong></a></h3>
+<p>Something that can be uniquely identified for a program.</p>
+<h3 id="version-1"><a class="header" href="#version-1"><strong>Version</strong></a></h3>
+<p>The minimum version required of the form <code>major</code> or <code>major.minor</code>, where <code>major</code> and <code>minor</code> are integers.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+    </body>
+</html>
