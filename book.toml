@@ -1,0 +1,14 @@
+[book]
+authors = ["MarcasRealAccount"]
+language = "en"
+multilingual = false
+src = "src"
+title = "LIFFDocs"
+
+[output.html]
+mathjax-support = true
+default-theme = "ayu"
+preferred-dark-theme = "coal"
+git-repository-url = "https://github.com/MarcasRealAccount/LIFFDocs"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/MarcasRealAccount/LIFFDocs/edit/main/{path}"
